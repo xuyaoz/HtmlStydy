@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts.js案例一</title>
+    <script type="text/javascript" src='./js/echarts.min.js'></script>
+    <script type="text/javascript" src='./js/theme/macarons.js'></script>
+</head>
+<body>
+<!-- div 定义图表的容器，-->
+<div id="chart" style="width:600px;height:500px;"></div>
+</body>
+<script type="text/javascript">
+    // 初始化图表标签,  第二个参数可以设置主题
+    var myChart = echarts.init(document.getElementById('chart'), 'macarons');
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+    option = {
+        backgroundColor: '#eaf5ff',  // 设置背景颜色
+        color: ['#87cefa', '#0c084c', 'rgba(123,123,123,0.5)'],
+        title: {
+            text: '某地区蒸发量和降水量',
+            subtext: '纯属虚构'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['蒸发量', '降水量']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {
+                    show: true,
+                    readOnly: false
+                },
+                magicType: {show: true, type: ['line', 'bar']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} %',  // 设置标签单位
+                    textStyle: {
+                        color: '#a8aab0',  // 色彩
+                        fontStyle: 'normal',
+                        fontFamily: '微软雅黑',  // 字体
+                        fontSize: 12
+                    }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '蒸发量',
+                type: 'bar',
+                data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name: '降水量',
+                type: 'bar',
+                data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+                markPoint: {
+                    data: [
+                        {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183, symbolSize: 18},
+                        {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</html>

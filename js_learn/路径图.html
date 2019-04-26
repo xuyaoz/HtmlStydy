@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts.js案例一</title>
+    <script type="text/javascript" src='./js/echarts.min.js'></script>
+</head>
+<body>
+<div id="chart" style="width:800px;height:300px;"></div>
+</body>
+<!--https://gallery.echartsjs.com/editor.html?c=xNeDG7yCyi-->
+<!--作则地址：https://gallery.echartsjs.com/editor.html?c=xBJdHzSGff-->
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('chart'));
+    myChart.showLoading();
+
+    var data2 = [{
+        name: "用户",
+        label: {
+            normal: {
+                backgroundColor: '#725bb8'
+            }
+        },
+        children: [{
+            name: "充值页面",
+            children: [{
+                name: "流量账单查询",
+                children: [{
+                    name: "59.12万"
+                }]
+            }, {
+                name: "流量余额查询",
+                children: [{
+                    name: "46.51万"
+                }]
+            },
+                {
+                    name: "商品列表",
+                    children: [{
+                        name: "27.32万"
+                    }]
+                },
+                {
+                    name: "自营套餐查询",
+                    children: [{
+                        name: "电信天翼积分查询",
+                        children: [{name: "11.76万"}]
+                    }]
+                }]
+        }, {
+            name: "生活号首页",
+            children: [{
+                name: "账单查询",
+                children: [{name: "33.17万"}]
+            },
+                {
+                    name: "充值页面",
+                    children: [{
+                        name: "流量余额查询",
+                        children: [{name: "13.21万"}]
+                    }]
+                }]
+        }]
+    }];
+
+    myChart.hideLoading();
+
+    myChart.setOption(option = {
+        // backgroundColor: '#f1f1f1',
+        title: {
+            text: "用户热门行为路径图",
+            x: "center",
+            textStyle: {fontSize: 14}
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {show: true}
+            }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}'
+        },
+
+        series: [{
+            type: 'tree',
+            name: '用户热门行为路径图',
+            data: data2,
+            top: '10%',// 距离顶部10%
+            right: '20%',  // 距离右边20%
+            symbolSize: 1,
+            initialTreeDepth: 10,
+            label: {
+                normal: {
+                    position: 'center',
+                    verticalAlign: 'middle',
+                    align: 'left',
+                    backgroundColor: '#7049f0',
+                    color: '#fff',
+                    padding: 3,
+                    formatter: [
+                        '{box|{b}}'
+                    ].join('\n'),
+                    rich: {
+                        box: {
+                            height: 20,
+                            color: '#fff',
+                            padding: [0, 1],
+                            align: 'center'
+                        }
+                    }
+                }
+            },
+            leaves: {
+                label: {
+                    normal: {
+                        position: 'center',
+                        verticalAlign: 'middle',
+                        align: 'left',
+                        backgroundColor: '#c44eff',
+                        formatter: [
+                            '{box|{b}}'
+                        ].join('\n'),
+                        rich: {
+                            box: {
+                                height: 16,
+                                color: '#fff',
+                                padding: [0, 1],
+                                align: 'center'
+                            }
+                        }
+                    }
+                }
+            },
+            expandAndCollapse: true,
+            animationDuration: 550,
+            animationDurationUpdate: 750
+        }
+        ]
+    });
+
+    myChart.setOption(option);
+</script>
+</html>

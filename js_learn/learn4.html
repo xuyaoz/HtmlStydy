@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>变量</title>
+</head>
+<body>
+<script>
+    var x = 2;
+    var y = 3;
+    var z = 2 + 3;
+    document.write("x:" + x + "<br>");
+    document.write(y + "<br>");
+    document.write(z + "<br>");
+</script>
+
+<p>点击这里来创建变量，并显示结果。</p>
+
+<button onclick="myFunction()">点击这里</button>
+
+<p id="demo"></p>
+<script>
+    function myFunction() {
+        var carName = 'Volvo';
+        document.getElementById("demo").innerHTML = carName;
+    }
+</script>
+
+<script>
+    var i;
+    //当您声明新变量时，可以使用关键词 "new" 来声明其类型：
+    //     var carname=new String;
+    // var x=      new Number;
+    // var y=      new Boolean;
+    // var cars=   new Array;
+    // var person= new Object;
+    // var cars = new Array();
+    // cars[0] = "Audi";
+    // cars[1] = "BMW";
+    // cars[2] = "Volvo";
+    var cars = [["Audi", 3], ["BMW", 2], ["Volvo", 1]];  // 和python一样
+    for (i = 0; i < cars.length; i++) {
+        document.write(cars[i][0] + "<br>");
+    }
+</script>
+
+<script>
+    var person = {
+        firstname: "Bill",
+        lastname: "Gates",
+        id: 5566
+    };
+    document.write(person.lastname + "<br />");
+    document.write(person["lastname"] + "<br />");
+</script>
+
+<script>
+    person = new Object();
+    person.firstname = "Bill";
+    person.lastname = "Gates";
+    person.age = 56;
+    person.eyecolor = "blue";
+    var x = person.firstname + " is " + person.age + " years old.";
+    var xLength = x.length;
+    document.write(person.firstname + " is " + person.age + " years old." + "<br />");
+    document.write(xLength)
+</script>
+
+<script>
+    // 条件运算符
+    var xuyz = 'cool'
+    var xuyz1 = (xuyz == 'cool') ? 'yes' : 'no';
+    document.write(xuyz1 + "<br>")
+</script>
+
+<script>
+    // 标准for 循环
+    var cats = ["x", "y", "z1", "y1"];
+
+    for (var i = 0; i < cats.length; i++) {
+        document.write(cats[i] + "<br>")
+    }
+
+    for (line in cats) {
+        // 和python 存在部分不一样
+        document.write(cats[line] + "<br>")
+    }
+
+    for (var j = 0; j < 10; j++) {
+        document.write(j + ":ixuyz" + "<br>");
+        if (j === 3) break  // 和 continue与python  一样
+    }
+
+</script>
+
+<br>
+
+
+</body>
+</html>

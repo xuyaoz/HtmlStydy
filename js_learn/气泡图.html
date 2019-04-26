@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts.js案例一</title>
+    <script type="text/javascript" src='./js/echarts.min.js'></script>
+</head>
+<body>
+<div id="chart" style="width:900px;height:500px;"></div>
+</body>
+<!--https://gallery.echartsjs.com/editor.html?c=xNeDG7yCyi-->
+<script type="text/javascript">
+    // 初始化图表标签
+    var myChart = echarts.init(document.getElementById('chart'));
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+    var plantCap = [{
+        name: '余额查询',
+        value: '3344.4万'
+    }, {
+        name: '套餐查询',
+        value: '2889.5万'
+    }, {
+        name: '生活号首页',
+        value: '1041.2万'
+    },
+        {
+            name: '流量查询',
+            value: '954.9万'
+        },
+        {
+            name: '账单查询',
+            value: '632.3万'
+        },
+        {
+            name: '固话充值',
+            value: '191.9万'
+        },
+        {
+            name: '充值页面',
+            value: '153.2万'
+        },
+        {
+            name: '宽带充值',
+            value: '78.6万'
+        },
+        {
+            name: '自营首页',
+            value: '73.4万'
+        },
+        {
+            name: '话费充值',
+            value: '70.9万'
+        },
+        {
+            name: '积分查询',
+            value: '35.4万'
+        },
+        {
+            name: '客户端充值',
+            value: '33.5万'
+        }
+    ];
+
+    var datalist = [{
+        offset: [50, 40],
+        symbolSize: 170,
+        opacity: 0.99,
+        color: '#ff7123'//红色
+    }, {
+        offset: [50, 73],
+        symbolSize: 150,
+        opacity: .95,
+        color: '#ff7123'//蓝色
+    }, {
+        offset: [30, 33],
+        symbolSize: 115,
+        opacity: .75,
+        color: '#ff7123'//橙色
+    },
+        {
+            offset: [30, 70],
+            symbolSize: 100,
+            opacity: .7,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [70, 20],
+            symbolSize: 95,
+            opacity: .75,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [75, 60],
+            symbolSize: 90,
+            opacity: .70,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [40, 10],
+            symbolSize: 80,
+            opacity: .70,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [20, 50],
+            symbolSize: 75,
+            opacity: .70,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [70, 40],
+            symbolSize: 70,
+            opacity: .70,
+            color: '#ff7123'//蓝色
+        },
+        {
+            offset: [60, 10],
+            symbolSize: 70,
+            opacity: .70,
+            color: '#ff7123'//蓝色
+        }];
+
+
+    var datas = [];
+    for (var i = 0; i < datalist.length; i++) {
+        var item = plantCap[i];
+        var itemToStyle = datalist[i];
+        datas.push({
+            name: item.value + '\n' + item.name,
+            value: itemToStyle.offset,
+            symbolSize: itemToStyle.symbolSize,
+            label: {
+                normal: {
+                    textStyle: {
+                        fontSize: 14
+                    }
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: itemToStyle.color,
+                    opacity: itemToStyle.opacity
+                }
+            }
+        })
+    }
+    option = {
+        title: {
+            text: '用户行为热力图',
+            x: 'center'
+        },
+        grid: {
+            show: false,
+            top: 10,
+            bottom: 10
+        },
+        xAxis: [{
+            gridIndex: 0,
+            type: 'value',
+            show: false,
+            min: 0,
+            max: 100,
+            nameLocation: 'middle',
+            nameGap: 5
+        }],
+        yAxis: [{
+            gridIndex: 0,
+            min: 0,
+            show: false,
+            max: 100,
+            nameLocation: 'middle',
+            nameGap: 30
+        }],
+        series: [{
+            type: 'scatter',
+            symbol: 'circle',
+            symbolSize: 120,
+            label: {
+                normal: {
+                    show: true,
+                    formatter: '{b}',
+                    color: '#fff',
+                    textStyle: {
+                        fontSize: '20'
+                    }
+                },
+            },
+            itemStyle: {
+                normal: {
+                    color: '#00acea'
+                }
+            },
+            data: datas
+        }]
+    };
+    myChart.setOption(option);
+</script>
+</html>

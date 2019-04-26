@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="pie" style="height:400px"></div>
+<div id="pie1" style="height:400px"></div>
+
+<div id="bar" style="height:400px"></div>
+
+<div id="radar" style="height:400px"></div>
+<script type="text/javascript">
+    // 路径配置
+    require.config({
+        paths: {
+            'echarts': 'http://echarts.baidu.com/build/echarts',
+            'echarts/chart/bar': 'http://echarts.baidu.com/build/echarts',
+            'echarts/chart/pie': 'http://echarts.baidu.com/build/echarts',
+            'echarts/chart/radar': 'http://echarts.baidu.com/build/echarts'
+        }
+    });
+
+    optionpie = {
+        title: {
+            text: '2014年04月客户总满意度比例图', subtext: '测试人员', x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a}<br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data: ['满意', '不满意']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                restore: true,
+                saveAsImage: true
+            }
+        },
+        calculable: true,
+        series: [
+            {
+                name: '总满意度百分比',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', 225],
+                data: [
+                    {value: 100, name: '满意'},
+                    {value: 16, name: '不满意'}
+                ]
+            }
+        ]
+    };
+
+
+    optionpie1 = {
+        title: {
+            text: '某站点用户访问来源',
+            subtext: '纯属虚构',
+            x: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                mark: {show: true},
+                dataView: {show: true, readOnly: false},
+                magicType: {
+                    show: true,
+                    type: ['pie', 'funnel'],
+                    option: {
+                        funnel: {
+                            x: '25%',
+                            width: '50%',
+                            funnelAlign: 'left',
+                            max: 1548
+                        }
+                    }
+                },
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                data: [
+                    {value: 335, name: '直接访问'},
+                    {value: 310, name: '邮件营销'},
+                    {value: 234, name: '联盟广告'},
+                    {value: 135, name: '视频广告'},
+                    {value: 1548, name: '搜索引擎'}
+                ]
+            }
+        ]
+    };
+
+    option = {
+        title: {
+            text: '2014年04月客户满意度分布图', subtext: '测试人员', x: 'left'
+        },
+        tooltip: {
+            trigger: 'axis',
+            formatter: "{b}<br/>{a0} : {c0}<br/>{a1} : {c1}"
+        },
+        legend: {
+            x: 'right',
+            padding: [5, 70, 5, 5],
+            data: ['满意', '不满意']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                restore: true,
+                saveAsImage: true
+            }
+        },
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                data: ['客服人员满意度', '维修人员满意度', '售后人员满意度']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                splitArea: {show: true}
+            }
+        ],
+        series: [
+            {
+                name: '满意',
+                type: 'bar',
+                radius: '55%',
+                center: ['50%', 225],
+                data: [10, 5, 8]
+            },
+            {
+                name: '不满意',
+                type: 'bar',
+                radius: '55%',
+                center: ['50%', 225],
+                data: [2, 4, 6]
+            }
+        ]
+    };
+
+
+optionradar = {
+    title : {
+        text: '预算 vs 开销（Budget vs spending）',
+        subtext: '纯属虚构'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        orient : 'vertical',
+        x : 'right',
+        y : 'bottom',
+        data:['预算分配（Allocated Budget）','实际开销（Actual Spending）']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    polar : [
+       {
+           indicator : [
+               { text: '销售（sales）', max: 6000},
+               { text: '管理（Administration）', max: 16000},
+               { text: '信息技术（Information Techology）', max: 30000},
+               { text: '客服（Customer Support）', max: 38000},
+               { text: '研发（Development）', max: 52000},
+               { text: '市场（Marketing）', max: 25000}
+            ]
+        }
+    ],
+    calculable : true,
+    series : [
+        {
+            name: '预算 vs 开销（Budget vs spending）',
+            type: 'radar',
+            data : [
+                {
+                    value : [4300, 10000, 28000, 35000, 50000, 19000],
+                    name : '预算分配（Allocated Budget）'
+                },
+                 {
+                    value : [5000, 14000, 28000, 31000, 42000, 21000],
+                    name : '实际开销（Actual Spending）'
+                }
+            ]
+        }
+    ]
+};
+
+
+    require(
+        [
+            'echarts',
+            'echarts/chart/pie',
+            'echarts/chart/bar',
+            'echarts/chart/radar'
+        ],
+        function (ec) {
+            var pieChart = ec.init(document.getElementById('pie'));
+            pieChart.setOption(optionpie);
+            var pieChart = ec.init(document.getElementById('pie1'));
+            pieChart.setOption(optionpie1);
+            var myChart = ec.init(document.getElementById('bar'));
+            myChart.setOption(option);
+            var myChart = ec.init(document.getElementById('radar'));
+            myChart.setOption(optionradar);
+        }
+    )
+</script>
+</body>

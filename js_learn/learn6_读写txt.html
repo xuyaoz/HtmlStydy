@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>读写txt</title>
+</head>
+<body>
+<script>
+    var data = [1, 2, 3, 4, 5];
+    var tmpData = [];  //
+    for (var i = 0; i <= data.length - 1; i++) {
+        // tmpData.push(data[i]);
+        var tmp = {};
+        tmp[data[i]] = data[i].toString();
+        tmpData.push(tmp)
+    }
+
+    // var f = fso.createtextfile("‪C:\\Users\\123456\\Desktop\\dd.txt", 2, true);
+    // f.writeLine(tmpData);
+    // document.write(tmpData)
+</script>
+
+</body>
+</html>

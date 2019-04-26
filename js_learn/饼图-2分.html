@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts.js案例一</title>
+    <script type="text/javascript" src='./js/echarts.min.js'></script>
+</head>
+<body>
+<div id="chart" style="width:900px;height:500px;"></div>
+</body>
+<!--https://gallery.echartsjs.com/editor.html?c=xNeDG7yCyi-->
+<script type="text/javascript">
+    // 初始化图表标签
+    var myChart = echarts.init(document.getElementById('chart'));
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+    // var imgPath = ['http://bmob-cdn-15355.b0.upaiyun.com/2017/12/01/bee4341c4089af7980b87074a77479ad.png']
+    // https://gallery.echartsjs.com/editor.html?c=x3THYkhudX  (作则地址)
+
+    var type1 = '消费用户';
+    var type2 = '未消费用户';
+    var useData = [2005564, 9576036];
+
+    function mySum(list) {
+        return eval(list.join("+"));
+    }
+
+    function myPer10000Float(value) {
+        var tmpData = value / 10000;
+        return tmpData.toFixed(1).toString() + "万";
+    }
+
+    var sumValue = mySum(useData);
+
+    var per = parseInt(100 * useData[0] / sumValue);
+    var perString = per.toString() + "%";
+    option = {
+        title: {
+            text: perString,
+            x: 'center',
+            y: 'center',
+            textStyle: {
+                fontWeight: 'normal',
+                color: '#0580f2',
+                fontSize: '90'
+            }
+        },
+
+        color: ['rgba(176, 212, 251, 1)'],
+        legend: {
+            show: true,
+            itemGap: 14, // item之间的间隔
+            padding: 20,
+            data: [type1, type2],  // data: ['蒸发量', '降水量']
+            textStyle: {
+                fontWeight: 'normal',
+                fontSize: '18'
+            }
+        },
+        series: [{
+            type: 'pie',
+            clockWise: true,
+            radius: ['50%', '66%'],
+            data: [{
+                value: useData[0],
+                name: type1,
+                itemStyle: {
+                    normal: {
+                        color: { // 完成的圆环的颜色
+                            colorStops: [{
+                                offset: 0,
+                                color: '#00cefc' // 0% 处的颜色
+                            }, {
+                                offset: 1,
+                                color: '#367bec' // 100% 处的颜色
+                            }]
+                        }
+                    }
+                },
+                label: {
+                    show: true,
+                    fontSize: 14,
+                    fontWeight: 900,
+                    color: '#367bec',
+                    formatter: function (a) {
+                        return a['name'] + ': ' + myPer10000Float(a['value']);
+                    }
+                }
+            }, {
+                name: type2,
+                value: useData[1],
+                label: {
+                    show: true,
+                    fontWeight: 900,
+                    color: '#5ca0d3',
+                    formatter: function (a) {
+                        return a['name'] + ': ' + myPer10000Float(a['value']);
+                    },
+                    fontSize: 14
+                }
+            }]
+        }]
+    };
+    myChart.setOption(option);
+</script>
+</html>

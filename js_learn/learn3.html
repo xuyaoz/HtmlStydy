@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test3</title>
+</head>
+<body>
+<p id="demo"> 会出问题吗123？ </p>
+<script>
+    /*
+    注释和scala 一模一样
+     */
+    function myFunction() {
+        x = document.getElementById("demo");
+        // // 如果采用document.write，整个 HTML 页面将被覆盖：无论指不指定id
+        // x = document.write("dsfsdfshffdsfs");
+        x.innerHTML = "hello";
+
+    }
+</script>
+
+<button type="button" onclick="myFunction()">试一试</button>
+
+
+<p id="myP"></p>
+
+<script>
+    // 目前的规范是加上
+    var x = 5;   // 声明 x 并把 5 赋值给它
+    var y = x + 2; // 声明 y 并把 x+2 赋值给它
+    document.getElementById("myP").innerHTML = y // 把 y 的值写到 myP
+</script>
+
+</body>
+</html>
